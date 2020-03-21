@@ -1,0 +1,268 @@
+$dividing-color: #e7e7e7;
+$padding-panel: 26px;
+
+p {
+  padding: 0;
+  margin: 0;
+}
+
+span {
+  line-height: 1.4rem;
+  font-style: normal;
+}
+
+.container-wp {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  display: flex;
+  flex-grow: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.control-panel {
+  width: 240px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  border-right: 1px solid $dividing-color;
+  box-sizing: border-box;
+  user-select: none;
+  flex-shrink: 0;
+
+
+  .control-panel-title {
+    user-select: none;
+    font-size: 1.1rem;
+    margin: 0;
+    padding: $padding-panel;
+  }
+
+
+}
+
+.content-panel {
+  flex-grow: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 20px 20px 80px;
+
+  .block {
+    cursor: move;
+    width: 100%;
+    min-height: 80px;
+    padding: 4px 0 16px 20px;
+    box-sizing: border-box;
+    margin-bottom: 40px;
+    user-select: none;
+
+    border-left: 2px solid transparent;
+    position: relative;
+
+
+    & p {
+      padding: 10px 0;
+    }
+
+    .item {
+      padding: 8px 0;
+      margin: 0;
+
+      span {
+        padding: 0 16px
+      }
+    }
+
+    .answer-placeholder {
+      color: #a1a1a1;
+      font-size: 0.9rem;
+      padding: 6px 0 0 0;
+    }
+
+    .helpText {
+      color: #a1a1a1;
+      font-size: 0.9rem;
+      padding: 6px 0 0 0;
+    }
+
+    .scoring-star {
+      font-size: 1.7rem;
+      color: #bdbdbd;
+    }
+
+    .address {
+      padding: 10px 0;
+      display: flex;
+
+      .address-select {
+        width: 280px
+      }
+
+      .address-select-jd {
+        width: 160px;
+        margin: 0 16px;
+      }
+
+      .address-input {
+        width: 400px;
+
+      }
+    }
+
+    .date {
+      padding: 6px 0;
+    }
+  }
+
+
+  .block-option {
+    position: absolute;
+    right: 18px;
+    top: 8px;
+    background: #e8e8e8;
+    padding: 4px;
+    border-radius: 6px;
+
+    & i {
+      cursor: pointer;
+      padding: 0 6px;
+    }
+  }
+
+  .normal {
+
+    &:hover {
+      border-left: 2px dashed rgba(45, 140, 240, 0.71);
+    }
+  }
+
+  .isSelect {
+    background: #fbfbfb;
+    border-left: 2px solid #2d8cf0;
+    box-shadow: 0 2px 1px -1px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 1px 3px 0px rgba(0, 0, 0, 0.12)
+  }
+
+  .input {
+    width: 100%;
+    height: 44px;
+    line-height: 44px;
+    border: none;
+    outline: none;
+    font-size: 1.3rem;
+    margin-bottom: 20px;
+  }
+
+  .describe-input {
+    height: 24px;
+    line-height: 24px;
+    font-size: 1rem;
+  }
+}
+
+.t {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.setting-panel {
+  width: 340px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  border-left: 1px solid $dividing-color;
+  box-sizing: border-box;
+  padding-bottom: 100px;
+  flex-shrink: 0;
+
+
+  .setting-panel-inner-box {
+
+    .setting-panel-title {
+      border-bottom: 1px solid $dividing-color;
+      padding: $padding-panel;
+    }
+
+    .main {
+      padding: 16px;
+
+      .item-option {
+        padding-top: 30px;
+
+        .item-option-label {
+          padding-bottom: 6px;
+          font-size: 0.9rem;
+          font-weight: 400;
+        }
+
+        .item-option-input {
+          display: flex;
+          align-items: center;
+          padding: 6px 0;
+
+          & i {
+            padding: 8px;
+            font-size: 1.2rem;
+          }
+
+          i.delete-icon {
+            cursor: pointer;
+          }
+
+          i.sort-icon {
+            cursor: move;
+            color: #9b9b9b;
+          }
+        }
+      }
+
+    }
+  }
+}
+
+.control-panel-item {
+  cursor: pointer;
+  color: #6c6c6c;
+  display: flex;
+  align-items: center;
+  padding: 12px $padding-panel;
+  transition: all 0.3s;
+
+  &:hover {
+    background: #ececec;
+  }
+
+  i {
+    width: 20px;
+    height: 20px;
+    padding-right: 10px;
+    font-size: 1.2rem;
+  }
+
+  p {
+    position: relative;
+    top: -3px;
+  }
+}
+
+.flip-list-move {
+  transition: all 0.5s;
+}
+
+.no-move {
+  transition: all 0s;
+}
+
+.ghost {
+  opacity: 0.5;
+  background: #c8ebfb;
+}
+
+.dot {
+  color: red;
+
+  font-weight: 500;
+}
+
+
+
