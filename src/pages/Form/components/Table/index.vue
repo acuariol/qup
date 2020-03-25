@@ -2,20 +2,45 @@
   <div>
     <v-data-table
         :headers="headers"
-        :items="desserts"
+        :items="list"
         class="elevation-2"
         :single-select="singleSelect"
-        item-key="name"
+        item-key="id"
         :show-select="showSelect"
         v-model="selected"
         hide-default-footer
+        :items-per-page="20"
+        :loading="loading"
+        loading-text="加载中..."
     >
-
-      <template v-slot:item.actions="{ item }">
+      <template v-slot:item.option="{ item }">
+        <v-btn class="mr-3" small @click="previewItem(item)">预览</v-btn>
         <v-btn class="mr-3" small @click="editItem(item)">编辑</v-btn>
-        <v-btn class="mr-3" small color="error" @click="deleteItem(item)">删除</v-btn>
-      </template>
 
+        <v-menu
+            bottom
+            :close-on-content-click="false"
+            transition="slide-y-transition"
+        >
+          <template v-slot:activator="{ on }">
+            <v-btn v-on="on" class="mr-3" small color="error">删除</v-btn>
+          </template>
+
+          <v-card min-width="180">
+            <v-card-title class="subtitle-1">
+              确定删除吗？
+            </v-card-title>
+
+            <v-card-actions>
+              <v-spacer/>
+              <v-btn @click="deleteItem(item)" small color="error">
+                确定
+              </v-btn>
+            </v-card-actions>
+          </v-card>
+        </v-menu>
+
+      </template>
     </v-data-table>
 
     <v-pagination
@@ -28,123 +53,65 @@
 </template>
 
 <script>
+
+  import { createNamespacedHelpers } from 'vuex';
+
+  const { mapState, mapMutations } = createNamespacedHelpers('form');
   export default {
     name: 'Table',
     props: {
       showSelect: Boolean,
     },
+    computed: {
+      ...mapState(['list', 'loading']),
+      selected: {
+        get: function () {
+          return this.$store.state.form.selected;
+        },
+        set: function (newValue) {
+          this.$store.state.form.selected = newValue;
+        },
+      },
+    },
     data() {
       return {
-
         page: 1,
-        selected: [],
         singleSelect: false,
         headers: [
-          {
-            text: 'Dessert (100g serving)',
-            align: 'start',
-            sortable: false,
-            value: 'name',
-          },
-          { text: 'Calories', value: 'calories' },
-          { text: 'Fat (g)', value: 'fat' },
-          { text: 'Carbs (g)', value: 'carbs' },
-          { text: 'Protein (g)', value: 'protein' },
-          { text: 'Iron (%)', value: 'iron' },
-          { text: 'Actions', value: 'actions', sortable: false },
+          { text: '表单名称', align: 'center', sortable: false, value: 'name' },
+          { text: '描述', value: 'description', align: 'center', sortable: false },
+          { text: '开始时间', value: 'startTime', align: 'center' },
+          { text: '结束时间', value: 'endTime', align: 'center' },
+          { text: '操作', value: 'option', align: 'center', sortable: false },
         ],
-        desserts: [
-          {
-            name: 'Frozen Yogurt',
-            calories: 159,
-            fat: 6.0,
-            carbs: 24,
-            protein: 4.0,
-            iron: '1%',
-          },
-          {
-            name: 'Ice cream sandwich',
-            calories: 237,
-            fat: 9.0,
-            carbs: 37,
-            protein: 4.3,
-            iron: '1%',
-          },
-          {
-            name: 'Eclair',
-            calories: 262,
-            fat: 16.0,
-            carbs: 23,
-            protein: 6.0,
-            iron: '7%',
-          },
-          {
-            name: 'Cupcake',
-            calories: 305,
-            fat: 3.7,
-            carbs: 67,
-            protein: 4.3,
-            iron: '8%',
-          },
-          {
-            name: 'Gingerbread',
-            calories: 356,
-            fat: 16.0,
-            carbs: 49,
-            protein: 3.9,
-            iron: '16%',
-          },
-          {
-            name: 'Jelly bean',
-            calories: 375,
-            fat: 0.0,
-            carbs: 94,
-            protein: 0.0,
-            iron: '0%',
-          },
-          {
-            name: 'Lollipop',
-            calories: 392,
-            fat: 0.2,
-            carbs: 98,
-            protein: 0,
-            iron: '2%',
-          },
-          {
-            name: 'Honeycomb',
-            calories: 408,
-            fat: 3.2,
-            carbs: 87,
-            protein: 6.5,
-            iron: '45%',
-          },
-          {
-            name: 'Donut',
-            calories: 452,
-            fat: 25.0,
-            carbs: 51,
-            protein: 4.9,
-            iron: '22%',
-          },
-          {
-            name: 'KitKat',
-            calories: 518,
-            fat: 26.0,
-            carbs: 65,
-            protein: 7,
-            iron: '6%',
-          },
-        ],
+
       };
     },
     methods: {
+      ...mapMutations(['remove', 'setPreviewData', 'setState']),
       editItem(row) {
-        console.log(row.getName);
+        const { schema, ...reset } = row;
+
+        this.setState({
+          schema: JSON.parse(schema),
+          editData: reset,
+          editDialogVisible: true,
+          editType: 'edit',
+          step: 'editInfo',
+        });
 
       },
       deleteItem(row) {
-        console.log(row);
 
+        this.remove({ id: row.id });
+
+      },
+      previewItem(row) {
+        this.setPreviewData({
+          name: row.name,
+          description: row.description,
+          schema: JSON.parse(row.schema),
+        });
       },
     },
   };

@@ -1,32 +1,26 @@
 import Mock from 'mockjs';
 
+import s1 from './data/schema1';
+
 Mock.setup({
   timeout: '300-600',
 });
 
-Mock.mock(`/user/getTable`, 'get', () => {
+Mock.mock(`/form/list`, 'get', () => {
   let list = [];
-  for (let i = 0; i < 5; i++) {
+  for (let i = 0; i < 15; i++) {
     list.push(Mock.mock({
-      id: '@increment',
-      name: Mock.mock('@cname'),
-      username: Mock.mock('@last'),
-      type: [0, 2],
-      checkbox: [0, 1],
-      'number|0-100': 0,
-      datetime: 1532932422071,
-      'sex|0-1': 0,
-      moreSelect: [0, 1],
-      'grade': 0,
-      address: Mock.mock('@cparagraph(1, 3)'),
-      check: [1, 3, 4],
+      id:i,
+      name: `问卷${i}`,
+      startTime: '2020-03-24',
+      endTime: '2020-03-27',
+      description: `请认真填写问卷`,
+      schema: JSON.stringify(s1),
     }));
   }
   return {
-    data: {
-      total: 11,
-      pageSize: 10,
-      tableData: list,
-    },
+    total: 5,
+    pageSize: 10,
+    data: list,
   };
 });

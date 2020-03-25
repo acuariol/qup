@@ -1,13 +1,15 @@
 import { getFormList } from '@/services/form';
 
-import { cloneDeep, findIndex, differenceBy, concat } from 'lodash';
-import moment from 'moment';
-
+import { differenceBy, findIndex } from 'lodash';
+import call from 'await-to-js';
+import { v4 as uuidV4 } from 'uuid';
 
 const form = {
   namespaced: true,
   state: {
     list: [], // 列表
+    selected: [],
+
     condition: {}, // 搜索条件
     loading: false, // 列表加载状态
     total: 0,
@@ -16,40 +18,37 @@ const form = {
 
     editType: 'add',
     editDialogVisible: false,
-    step: 'editAct', // 第一步是编辑活动相关的 editAct。 第二步是编辑表单 editForm
+    step: 'editInfo',
 
     // 预览
     previewVisible: false,
     isRowPreview: false,
     previewData: {
-      formName: '',
+      name: '',
       schema: {},
       description: '',
     },
 
 
     editData: null,  // 新建、编辑所保存的数据
-    originalEditData: null,  // 原始数据，
+
     schema: {},
 
   },
-  getters: {},
+  getters: {
+    listLength: state => state.list.length,
+  },
 
   actions: {
-    async fetchList() {
-      const response = await getFormList();
-      console.log(response);
-    },
+    async fetchList({ commit }) {
+      commit('setState', { loading: true });
+      const [err, response] = await call(getFormList());
 
-    async addition({ state, getters, commit, dispatch }) {
-
-    },
-    async modify({ state, getters, commit, dispatch }) {
-
-
-    },
-    async remove({ dispatch }, payload) {
-
+      if (!err) {
+        const { data, total } = response;
+        commit('setState', { list: data, total });
+      }
+      commit('setState', { loading: false });
     },
 
 
@@ -60,10 +59,54 @@ const form = {
         state[key] = payload[key];
       });
     },
+    addition(state) {
 
+      state.list.unshift({
+        ...state.editData,
+        id: uuidV4(),
+        schema: JSON.stringify(state.schema || '{}'),
+      });
+
+      state.editDialogVisible = false;
+      state.editData = null;
+      state.schema = {};
+      state.step = 'editInfo';
+
+    },
+    modify(state) {
+      const { editData, schema, list } = state;
+      const index = findIndex(list, o => o.id === editData.id);
+      list.splice(index, 1, { ...editData, schema: JSON.stringify(schema) });
+      state.list = list;
+
+      state.editDialogVisible = false;
+      state.editData = null;
+      state.schema = {};
+      state.step = 'editInfo';
+
+    },
+    remove(state, { id }) {
+      state.list = state.list.filter(item => item.id !== id);
+    },
+    removeMultiple(state) {
+      state.list = differenceBy(state.list, state.selected, 'id');
+      state.selected = [];
+    },
+
+    setPreviewData: (state, payload) => {
+      const org = payload ? payload : state.editData;
+      state.previewData.name = org.name;
+      state.previewData.description = org.description;
+
+      state.previewData.schema = payload ? payload.schema : state.schema;
+      state.previewVisible = true;
+    },
 
     exit: (state) => {
       state.editDialogVisible = false;
+      state.editData = null;
+      state.schema = {};
+      state.step = 'editInfo';
     },
   },
 

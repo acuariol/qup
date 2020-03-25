@@ -7,7 +7,7 @@
 
     <div class="content-panel">
       <label>
-        <input class="input" v-model="editData.formName" placeholder="点此添加问卷标题" />
+        <input class="input" v-model="editData.name" placeholder="点此添加问卷标题" />
       </label>
 
       <label>

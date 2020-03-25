@@ -16,11 +16,23 @@
           <v-toolbar-title v-if="editType==='edit'">编辑</v-toolbar-title>
           <v-spacer></v-spacer>
           <v-toolbar-items>
-            <v-btn dark text @click.stop="handleExit">保存</v-btn>
+            <!--            <v-btn v-if="step==='editInfo'" dark text @click.stop="toggleStep('editForm')">下一步</v-btn>-->
+
+            <template v-if="step==='editForm'">
+              <v-btn dark text @click.stop="toggleStep('editInfo')">上一步</v-btn>
+
+              <v-btn dark text @click.stop="handlePreview">预览</v-btn>
+              <v-btn dark text @click.stop="handleSave">保存</v-btn>
+            </template>
+
           </v-toolbar-items>
         </v-toolbar>
 
-        <Workspace></Workspace>
+        <div class="area-edit">
+          <BaseInput v-if="editData&&step==='editInfo'"></BaseInput>
+          <Workspace v-if="editData&&step==='editForm'"></Workspace>
+        </div>
+
       </div>
 
     </v-card>
@@ -31,24 +43,46 @@
 
   import { createNamespacedHelpers } from 'vuex';
   import Workspace from '../Workspace';
+  import BaseInput from '../BaseInput';
+  import { saveJSON } from '@/utils/utils';
 
-  const { mapState, mapActions, mapMutations } = createNamespacedHelpers('form');
+  const { mapState, mapMutations } = createNamespacedHelpers('form');
 
   export default {
     name: 'EditDialog',
-    components: { Workspace },
+    components: { Workspace, BaseInput },
     computed: {
-      ...mapState(['editDialogVisible', 'editType']),
+      ...mapState(['editDialogVisible', 'step', 'editType', 'schema', 'previewVisible', 'editData']),
     },
     methods: {
-      ...mapMutations(['exit']),
+      ...mapMutations(['exit', 'addition','modify', 'setState', 'setPreviewData']),
       handleExit() {
         this.exit();
+      },
+      handleSave() {
+        if (this.editType === 'add')
+          this.addition();
+
+        if (this.editType === 'edit')
+          this.modify();
+      },
+      handlePreview() {
+        this.setPreviewData();
+      },
+      toggleStep(step) {
+        this.setState({ step });
       },
     },
   };
 </script>
 
-<style scoped>
-
+<style scoped lang="scss">
+  .area-edit {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    flex-grow: 1;
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
 </style>

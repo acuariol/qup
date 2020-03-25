@@ -17,6 +17,11 @@ const routes = [
         path: '/form',
         component: () => import('../pages/Form/index.vue'),
       },
+      {
+        path: '/monitor',
+        component: () => import('../pages/Monitor/index.vue'),
+      }
+
     ],
   },
 

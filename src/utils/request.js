@@ -72,7 +72,7 @@ request.interceptors.response.use(response => {
   return response.data;
 }, error => {
 
-  NProgress.done();
+  // NProgress.done();
   errorHandler(error);
   return Promise.reject(error);
 });

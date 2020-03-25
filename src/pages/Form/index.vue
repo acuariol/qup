@@ -8,7 +8,16 @@
 
       <v-card-text>
         <div class="title-option">
-          <v-btn @click.stop="showSelect = !showSelect">多选</v-btn>
+          <div>
+            <template v-if="listLength">
+              <v-btn @click.stop="toggleShowSelect">
+                {{showSelect?'取消多选':'多选'}}
+              </v-btn>
+
+              <v-btn style="margin: 0 8px" color="error" v-if="selectedLength" @click.stop="handleDeleteSelected">删除选中
+              </v-btn>
+            </template>
+          </div>
           <v-btn color="primary" @click.stop="handleCreat">新添</v-btn>
         </div>
       </v-card-text>
@@ -16,33 +25,54 @@
 
     <Table :showSelect="showSelect"></Table>
     <EditDialog></EditDialog>
+    <PreviewDialog></PreviewDialog>
   </div>
 </template>
 
 <script>
-  import { createNamespacedHelpers } from 'vuex';
+
   import Table from './components/Table';
   import EditDialog from './components/EditDialog';
+  import PreviewDialog from './components/PreviewDialog';
   import { cloneDeep } from 'lodash';
+  import { createNamespacedHelpers } from 'vuex';
 
-  const { mapState, mapActions, mapMutations } = createNamespacedHelpers('form');
+  const { mapState, mapActions, mapMutations, mapGetters } = createNamespacedHelpers('form');
 
   export default {
     name: 'Form',
-    components: { Table, EditDialog },
+    components: { Table, EditDialog, PreviewDialog },
+    computed: {
+      ...mapState(['selected']),
+      ...mapGetters(['listLength']),
+      selectedLength: _this => _this.selected.length,
+    },
+    watch: {
+      listLength(val) {
+        if (val === 0) this.showSelect = false;
+      },
+    },
     data() {
       return {
         showSelect: false,
       };
     },
     methods: {
-      ...mapMutations(['setState']),
+      ...mapMutations(['setState', 'removeMultiple']),
+      ...mapActions(['fetchList']),
+      toggleShowSelect() {
+        this.showSelect = !this.showSelect;
+        if (this.selected.length)
+          this.setState({ selected: [] });
+      },
+      handleDeleteSelected() {
+        this.removeMultiple();
+      },
       handleCreat() {
 
         const record = {
           description: '',
           endTime: '',
-          formName: '',
           name: '',
           startTime: '',
         };
@@ -52,7 +82,7 @@
       },
     },
     mounted() {
-
+      this.fetchList();
     },
   };
 </script>

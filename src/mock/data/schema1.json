@@ -1,0 +1,75 @@
+{
+    "0bdaf868-f44f-4c78-8944-7371ff6a57d8": {
+        "uuid": "0bdaf868-f44f-4c78-8944-7371ff6a57d8",
+        "componentType": "radio",
+        "label": "单选题",
+        "title": "单选题",
+        "options": [
+            {
+                "id": "64331722-3668-42b3-a46c-a87645be2227",
+                "value": "选项1"
+            },
+            {
+                "id": "5327001b-f6b3-42a5-83c0-436af8b9fc6b",
+                "value": "选项2"
+            },
+            {
+                "id": "d12dc310-cb96-4bb7-8864-4d587f23f2c7",
+                "value": "选项3"
+            }
+        ],
+        "request": false,
+        "userInput": null
+    },
+    "013f0cdc-623e-48b0-83d0-4dbd8bef15ea": {
+        "uuid": "013f0cdc-623e-48b0-83d0-4dbd8bef15ea",
+        "componentType": "multipleRadio",
+        "label": "多选题",
+        "title": "多选题",
+        "options": [
+            {
+                "id": "3300f832-c7b4-4a72-b36d-69e1327dcca6",
+                "value": "选项1"
+            },
+            {
+                "id": "d54320cc-07ea-4f27-bb40-eac26da345d9",
+                "value": "选项2"
+            },
+            {
+                "id": "95966d07-9e19-4298-879b-03edc7c45746",
+                "value": "选项3"
+            }
+        ],
+        "request": false,
+        "userInput": []
+    },
+    "a1fe6749-7943-4d8c-944e-55e0b19a1700": {
+        "uuid": "a1fe6749-7943-4d8c-944e-55e0b19a1700",
+        "componentType": "answer",
+        "label": "问答题",
+        "title": "回答题",
+        "request": false,
+        "placeholder": "请输入",
+        "userInput": ""
+    },
+    "4def094f-3e46-4f52-b9b5-4827bed57194": {
+        "uuid": "4def094f-3e46-4f52-b9b5-4827bed57194",
+        "componentType": "rate",
+        "label": "评分",
+        "title": "请进行评分",
+        "request": false,
+        "scoring": 5,
+        "allowHalf": false,
+        "userInput": null
+    },
+    "4be843ac-1ea1-40af-9b8f-00de05417a49": {
+        "uuid": "4be843ac-1ea1-40af-9b8f-00de05417a49",
+        "componentType": "number",
+        "label": "数字",
+        "title": "数字",
+        "request": false,
+        "placeholder": "请输入",
+        "unit": "",
+        "userInput": null
+    }
+}
