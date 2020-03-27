@@ -3,7 +3,6 @@ import Vuex from 'vuex';
 import form from './modules/form';
 import call from 'await-to-js';
 import { getNotice } from '@/services/user';
-import { groupBy } from 'lodash';
 
 Vue.use(Vuex);
 

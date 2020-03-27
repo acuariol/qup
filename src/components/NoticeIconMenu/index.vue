@@ -28,7 +28,7 @@
 
         <v-tooltip bottom>
           <template v-slot:activator="{ on }">
-            <v-btn class="ml-3" icon @click="clearNotice" v-on="on" v-show="noticeLength">
+            <v-btn class="ml-3" icon @click="clearNotice()" v-on="on" v-show="noticeLength">
               <v-icon>mdi-notification-clear-all</v-icon>
             </v-btn>
           </template>
