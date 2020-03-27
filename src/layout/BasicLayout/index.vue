@@ -23,13 +23,12 @@
         <v-icon>mdi-magnify</v-icon>
       </v-btn>
 
-      <v-btn icon>
-        <v-icon>mdi-heart</v-icon>
-      </v-btn>
 
-      <v-btn icon>
-        <v-icon>mdi-dots-vertical</v-icon>
-      </v-btn>
+      <NoticeIconMenu></NoticeIconMenu>
+
+
+      <AccountIconMenu></AccountIconMenu>
+
 
     </v-app-bar>
 
@@ -124,10 +123,13 @@
 </template>
 
 <script>
+  import AccountIconMenu from '@/components/AccountIconMenu';
+  import NoticeIconMenu from '@/components/NoticeIconMenu';
   import { findIndex } from 'lodash';
 
   export default {
     name: 'BasicLayout',
+    components: { AccountIconMenu ,NoticeIconMenu},
     data() {
       return {
         drawer: null,
@@ -164,9 +166,7 @@
 
     watch: {
       $route({ path }) {
-        const index = findIndex(this.menu, o => o.path === path);
-        if (typeof index === 'number' && index >= 0)
-          this.menuIndex = index;
+        this.handleMenuIndex(path)
       },
     },
     methods: {
@@ -174,6 +174,15 @@
         if (path && this.$router.currentRoute.path !== path)
           this.$router.push(path);
       },
+      handleMenuIndex(path) {
+        if (!path) return;
+        const index = findIndex(this.menu, o => o.path === path);
+        if (typeof index === 'number' && index >= 0)
+          this.menuIndex = index;
+      },
+    },
+    mounted() {
+      this.handleMenuIndex(this.$router.currentRoute.path);
     },
   };
 </script>

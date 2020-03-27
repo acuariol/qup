@@ -20,11 +20,14 @@ const routes = [
       {
         path: '/monitor',
         component: () => import('../pages/Monitor/index.vue'),
-      }
-
+      },
+      {
+        path: '/notice',
+        component: () => import('../pages/Notice/index.vue'),
+      },
     ],
   },
 
 ];
 
-export default routes
+export default routes;

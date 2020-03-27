@@ -1,7 +1,7 @@
 import Mock from 'mockjs';
 
 import s1 from './data/schema1';
-
+import notice from './data/notice'
 Mock.setup({
   timeout: '300-600',
 });
@@ -24,3 +24,10 @@ Mock.mock(`/form/list`, 'get', () => {
     data: list,
   };
 });
+
+Mock.mock(`/notice/list`, 'get', () => {
+  return {
+    data: notice,
+  };
+});
+

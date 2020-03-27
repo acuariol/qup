@@ -32,7 +32,7 @@
             </v-card-title>
 
             <v-card-actions>
-              <v-spacer/>
+              <v-spacer />
               <v-btn @click="deleteItem(item)" small color="error">
                 确定
               </v-btn>
@@ -49,6 +49,16 @@
         :length="4"
         circle
     />
+
+    <v-snackbar
+        v-model="snackbar"
+        color="success"
+        top
+        vertical
+        :timeout="3000"
+    >
+      删除成功
+    </v-snackbar>
   </div>
 </template>
 
@@ -76,6 +86,7 @@
     data() {
       return {
         page: 1,
+        snackbar: false,
         singleSelect: false,
         headers: [
           { text: '表单名称', align: 'center', sortable: false, value: 'name' },
@@ -104,7 +115,7 @@
       deleteItem(row) {
 
         this.remove({ id: row.id });
-
+        this.snackbar = true;
       },
       previewItem(row) {
         this.setPreviewData({

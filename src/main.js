@@ -1,5 +1,11 @@
 import Vue from 'vue';
 import Notifications from 'vue-notification';
+
+// 全局注册echarts主题
+import echarts from 'echarts';
+import theme from '@/components/charts/theme';
+echarts.registerTheme('mui', theme);
+
 import App from './App.vue';
 import router from './router';
 import vuetify from './plugins/vuetify';
