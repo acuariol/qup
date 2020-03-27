@@ -177,7 +177,7 @@
       handleMenuIndex(path) {
         if (!path) return;
         const index = findIndex(this.menu, o => o.path === path);
-        if (typeof index === 'number' && index >= 0)
+        if (typeof index === 'number')
           this.menuIndex = index;
       },
     },

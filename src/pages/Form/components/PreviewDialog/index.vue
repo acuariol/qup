@@ -8,7 +8,7 @@
   >
     <v-card height="100%">
       <div style="display: flex;flex-direction: column;height: 100%">
-        <v-toolbar dark color="#e91e63">
+        <v-toolbar dark color="secondary">
           <v-btn icon dark @click.stop="cancelPreview">
             <v-icon>mdi-close</v-icon>
           </v-btn>

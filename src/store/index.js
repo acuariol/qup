@@ -25,7 +25,6 @@ export default new Vuex.Store({
   actions: {
     async fetchNotice({ commit }) {
       const [err, response] = await call(getNotice());
-
       if (!err) {
         const { data } = response;
         commit('setState', { notice: data.map(o => ({ ...o, lookOver: false })) });
