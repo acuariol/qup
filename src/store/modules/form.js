@@ -50,8 +50,6 @@ const form = {
       }
       commit('setState', { loading: false });
     },
-
-
   },
   mutations: {
     setState: (state, payload) => {

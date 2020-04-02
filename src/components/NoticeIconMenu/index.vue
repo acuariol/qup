@@ -1,5 +1,4 @@
 <template>
-
   <div style="display: inline-block">
     <v-menu
         offset-y
@@ -76,7 +75,7 @@
         <v-card-actions class="white">
           <v-spacer></v-spacer>
           <v-btn
-              color="primary"
+              :color="item.color"
               text
               @click="close"
           >

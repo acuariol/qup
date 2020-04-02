@@ -25,6 +25,10 @@ const routes = [
         path: '/notice',
         component: () => import('../pages/Notice/index.vue'),
       },
+      {
+        path: '/account',
+        component: () => import('../pages/Account/index.vue'),
+      },
     ],
   },
 

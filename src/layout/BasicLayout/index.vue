@@ -19,16 +19,28 @@
 
       <v-spacer></v-spacer>
 
-      <v-btn icon>
+      <v-slide-x-reverse-transition>
+        <v-text-field
+            style="max-width: 460px"
+            rounded
+            dense
+            class="mx-4 mt-1"
+            flat
+            hide-details
+            label="搜索"
+            solo-inverted
+            v-if="showSearch"
+        ></v-text-field>
+      </v-slide-x-reverse-transition>
+
+
+      <v-btn icon @click="showSearch=!showSearch">
         <v-icon>mdi-magnify</v-icon>
       </v-btn>
 
-
       <NoticeIconMenu></NoticeIconMenu>
 
-
       <AccountIconMenu></AccountIconMenu>
-
 
     </v-app-bar>
 
@@ -134,6 +146,7 @@
       return {
         drawer: null,
         miniVariant: false,
+        showSearch: false,
         menuIndex: -1,
         item1: 1,
         item2: 2,
@@ -163,7 +176,6 @@
         currentPath: '',
       };
     },
-
     watch: {
       $route({ path }) {
         this.handleMenuIndex(path)

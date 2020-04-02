@@ -1,7 +1,5 @@
 <template>
-  <div class="pie-box">
-    <div ref="pie" style="width: 800px;height:500px;"></div>
-  </div>
+  <div ref="pie" style="width:800px;height:500px;" ></div>
 </template>
 
 <script>
@@ -11,7 +9,7 @@
     name: 'Pie',
     mounted() {
 
-      const myChart = echarts.init(this.$refs.pie, 'mui');
+      const chart = echarts.init(this.$refs.pie, 'mui');
 
       const data = this.genData(10);
 
@@ -51,7 +49,7 @@
           },
         ],
       };
-      myChart.setOption(option);
+      chart.setOption(option);
     },
     methods: {
       genData(count) {
@@ -93,13 +91,5 @@
 </script>
 
 <style scoped lang="scss">
-  .pie-box {
-    width: 100%;
-    height: auto;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-    right: 50px
-  }
+
 </style>
