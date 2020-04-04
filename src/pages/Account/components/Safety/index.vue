@@ -3,8 +3,8 @@
     <p class="title font-weight-bold mb-8">安全设置</p>
     <div>
       <v-list>
-        <template v-for="(item,index) in lists">
-          <v-list-item two-line class="py-2 px-0" :key="item.id">
+        <div v-for="(item,index) in lists" :key="item.id">
+          <v-list-item two-line class="py-2 px-0" >
             <v-list-item-content>
               <v-list-item-title>{{item.title}}</v-list-item-title>
               <v-list-item-subtitle class="pt-2">{{item.subtitle}}</v-list-item-subtitle>
@@ -17,11 +17,8 @@
             </v-list-item-action>
 
           </v-list-item>
-          <v-divider
-              v-if="index + 1 < lists.length"
-              :key="item.id"
-          ></v-divider>
-        </template>
+          <v-divider v-if="index + 1 < lists.length" />
+        </div>
 
 
       </v-list>

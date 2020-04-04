@@ -31,3 +31,19 @@ Mock.mock(`/notice/list`, 'get', () => {
   };
 });
 
+Mock.mock(`/user/info`, 'get', () => {
+  return {
+    data: {
+      name:'Acuario',
+      profile:'Life Is Life',
+      email:'me@acuario.cn',
+      country:'英国',
+      street:'伦敦贝克街221号',
+      phone:'02022903',
+      station:'前端开发',
+      position:'Questionnaire－某某某事业群－某某平台部－某某技术部－CEO',
+      tags:['很有想法的','专注设计','热爱音乐','皇家马德里']
+    }
+  };
+});
+

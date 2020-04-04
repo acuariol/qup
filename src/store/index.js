@@ -2,13 +2,14 @@ import Vue from 'vue';
 import Vuex from 'vuex';
 import form from './modules/form';
 import call from 'await-to-js';
-import { getNotice } from '@/services/user';
+import { getNotice,getUserInfo} from '@/services/user';
 
 Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
     notice: [],
+    userInfo:null
   },
   getters: {
     noticeLength: state => {
@@ -30,6 +31,14 @@ export default new Vuex.Store({
         commit('setState', { notice: data.map(o => ({ ...o, lookOver: false })) });
       }
     },
+    async fetchUserInfo({ commit }) {
+      const [err, response] = await call(getUserInfo());
+      if (!err) {
+        const { data } = response;
+        commit('setState', { userInfo: data});
+      }
+    },
+
   },
   mutations: {
     setState: (state, payload) => {
