@@ -41,7 +41,7 @@
             icon: 'mdi-account-circle',
           },
           {
-            path: '/logout',
+            path: '/login',
             title: '退出登录',
             icon: 'mdi-logout-variant',
           },

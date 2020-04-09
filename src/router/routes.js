@@ -2,12 +2,15 @@ import BasicLayout from '../layout/BasicLayout/index';
 
 const routes = [
   {
+    path: '/login',
+    component: () => import('../pages/Login/index.vue'),
+  },
+  {
     path: '/',
     component: BasicLayout,
     children: [
       {
         path: '/',
-
         // route level code-splitting
         // this generates a separate chunk (about.[hash].js) for this route
         // which is lazy-loaded when the route is visited.
@@ -29,6 +32,7 @@ const routes = [
         path: '/account',
         component: () => import('../pages/Account/index.vue'),
       },
+
     ],
   },
 

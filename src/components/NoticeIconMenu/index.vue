@@ -4,8 +4,8 @@
         offset-y
         bottom
         right
-        min-width="500"
-        max-width="500"
+        :min-width="$vuetify.breakpoint.xsOnly?'100%':500"
+        :max-width="$vuetify.breakpoint.xsOnly?'100%':500"
         transition="slide-y-transition"
         class="elevation-0"
         :close-on-content-click="false"
