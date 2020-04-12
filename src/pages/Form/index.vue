@@ -1,6 +1,5 @@
 <template>
   <div>
-
     <v-card class="mb-6">
       <v-card-title>
         问卷管理

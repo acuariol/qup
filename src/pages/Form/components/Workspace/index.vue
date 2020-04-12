@@ -4,6 +4,10 @@
       <p class="control-panel-title">添加控件</p>
       <ControlPanel :click="handleAddBlock" />
     </div>
+    <v-divider
+        inset
+        vertical
+    />
 
     <div class="content-panel">
       <label>
@@ -24,6 +28,11 @@
         :on-drag-added="handleAddBlock"
       />
     </div>
+
+    <v-divider
+        inset
+        vertical
+    />
     <div class="setting-panel" :class="{t:!editUuid}">
       <tips type="right" v-if="!editUuid"></tips>
       <SettingPanel v-if="editUuid" v-model="schema[editUuid]" :schema="schema" :editUuid="editUuid" />
@@ -129,9 +138,7 @@
         return uuidList[index + 1];
       },
       handleDragEnd(newSchema, uuid) {
-
         this.setState({ schema: newSchema });
-
         this.editUuid = uuid;
       },
       initData(uuid, componentType, label) {

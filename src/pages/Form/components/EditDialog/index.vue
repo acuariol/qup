@@ -44,8 +44,6 @@
   import { createNamespacedHelpers } from 'vuex';
   import Workspace from '../Workspace';
   import BaseInput from '../BaseInput';
-  import { saveJSON } from '@/utils/utils';
-
   const { mapState, mapMutations } = createNamespacedHelpers('form');
 
   export default {

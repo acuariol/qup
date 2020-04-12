@@ -2,7 +2,7 @@
   <v-container fluid :style="{background: `url(${require('@/assets/2003488.jpg')})`}" class="login-container">
     <div class="main">
       <v-row no-gutters justify="center" align="center" style="margin-top: 20vh">
-        <v-col sm="12" md="6" xl="6" lg="6" class="px-3">
+        <v-col sm="12" md="4" xl="4" lg="4" class="px-3">
           <div class="d-flex justify-center  pb-12">
             <p class="display-1 white--text ma-0">Questionnaire</p>
           </div>
@@ -10,20 +10,22 @@
             <v-text-field
                 label="用户名(admin)"
                 outlined
-                dark
                 v-model="username"
+                color="#fff"
+                dark
             />
 
             <v-text-field
                 label="密码(123456)"
                 outlined
                 dark
+                color="#fff"
                 v-model="password"
                 :type="show ? 'text' : 'password'"
                 :append-icon="show ? 'mdi-eye' : 'mdi-eye-off'"
                 @click:append="show = !show"
             />
-            <v-btn block large color="teal darken-2" dark @click.stop="handleLogin">登录</v-btn>
+            <v-btn block large color="primary" dark @click.stop="handleLogin">登录</v-btn>
           </v-card>
         </v-col>
       </v-row>

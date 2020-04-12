@@ -16,7 +16,7 @@
   }
 
   .col-bg {
-    background: #fff;
+    //background: #fff;
   }
 
   .cover {
@@ -56,22 +56,22 @@
     }
 
     .title {
-      color: #3f3f3f;
-      font-weight: 400;
+      //color: #3f3f3f;
+      //font-weight: 400;
     }
 
     .subtitle {
-      color: #747474;
-      padding-bottom: 32px;
+      //color: #747474;
+      //padding-bottom: 32px;
     }
 
     .help-text {
       font-size: 0.87rem;
-      color: #7e7e7e;
+      //color: #7e7e7e;
     }
 
     .link {
-      color: #1e9fff;
+      color: var(v--primary--base)
     }
 
   }

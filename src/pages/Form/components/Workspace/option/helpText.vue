@@ -2,25 +2,33 @@
   <div>
     <div class="item-option">
       <p class="item-option-label">内容</p>
-      <el-input
-        type="textarea"
-        size="small"
-        clearable
-        :value="value.content"
-        @input="contentChange"
-        :autosize="{ minRows: 3, maxRows: 6}"
+
+      <v-textarea
+          clearable
+          :value="value.content"
+          @input="contentChange"
+          label="请输入"
+          outlined
+          single-line
+          hide-details
       />
+
+
     </div>
 
     <div class="item-option">
       <p class="item-option-label">跳转链接</p>
-      <el-input
-        size="small"
-        clearable
-        :value="value.link"
-        @input="LinkChange"
-        placeholder="请输入，如：www.example.com"
+
+      <v-text-field
+          clearable
+          :value="value.link"
+          @input="LinkChange"
+          label="请输入，如：www.example.com"
+          outlined
+          single-line
+          hide-details
       />
+
     </div>
 
   </div>

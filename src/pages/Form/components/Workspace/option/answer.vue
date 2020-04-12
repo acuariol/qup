@@ -2,28 +2,38 @@
   <div>
     <div class="item-option">
       <p class="item-option-label">题目</p>
-      <el-input
-        size="small"
-        clearable
-        :value="value.title"
-        @input="titleChange"
+
+      <v-text-field
+          clearable
+          :value="value.title"
+          label="请输入"
+          outlined
+          single-line
+          @input="titleChange"
+          hide-details
       />
+
     </div>
 
     <div class="item-option">
       <p class="item-option-label">提示文字</p>
-      <el-input
-        size="small"
-        clearable
-        :value="value.placeholder"
-        @input="placeholderChange"
+
+      <v-text-field
+          clearable
+          :value="value.placeholder"
+          label="请输入"
+          outlined
+          single-line
+          @input="placeholderChange"
+          hide-details
       />
+
     </div>
 
     <div class="item-option">
       <p class="item-option-label">必填</p>
-      <el-switch :value="value.request" @change="requestChange">
-      </el-switch>
+      <v-switch class="ma-0" :value="value.request" @change="requestChange">
+      </v-switch>
     </div>
   </div>
 </template>

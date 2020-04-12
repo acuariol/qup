@@ -1,17 +1,16 @@
 <template>
-
-  <v-container fluid>
+  <div>
     <v-row
         align="start"
         justify="center"
+        class="mt-12"
     >
-      <v-col cols="6">
+      <v-col cols="4">
         <v-form
             ref="form"
             v-model="valid"
             lazy-validation
         >
-
           <v-menu
               ref="startTime-menu"
               v-model="startTimeMenu"
@@ -23,6 +22,7 @@
           >
             <template v-slot:activator="{ on }">
               <v-text-field
+                  outlined
                   :rules="startTimeRules"
                   v-model="editData.startTime"
                   label="开始时间"
@@ -50,6 +50,7 @@
           >
             <template v-slot:activator="{ on }">
               <v-text-field
+                  outlined
                   :rules="endTimeRules"
                   v-model="editData.endTime"
                   label="结束时间"
@@ -68,22 +69,17 @@
           <div style="display: flex;justify-content: flex-end">
             <v-btn
                 :disabled="!valid"
-                color="success"
-                class="mr-4"
+                color="primary"
+                elevation="0"
                 @click.stop="validate"
             >
               下一步
             </v-btn>
-
           </div>
-
         </v-form>
       </v-col>
-
     </v-row>
-  </v-container>
-
-
+  </div>
 </template>
 
 <script>

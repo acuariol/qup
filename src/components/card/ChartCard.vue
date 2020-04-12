@@ -1,6 +1,6 @@
 <template>
-  <div class="chart-card-box">
-    <v-card dark class="card-title title font-weight-bold pa-2 px-10" color="#03A9F4">
+  <div class="chart-card-box mt-8">
+    <v-card dark class="card-title title font-weight-bold pa-4 px-12" color="#4DB6AC">
       {{title}}
     </v-card>
 
@@ -30,7 +30,7 @@
 
     .card-title {
       position: absolute;
-      top: -24px;
+      top: -32px;
       left: 24px;
       width: auto;
       z-index: 1;

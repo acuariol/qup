@@ -2,33 +2,34 @@
   <div>
     <div class="item-option">
       <p class="item-option-label">题目</p>
-      <el-input
-        size="small"
-        clearable
-        :value="value.title"
-        @input="titleChange"
+      <v-text-field
+          clearable
+          :value="value.title"
+          label="请输入"
+          outlined
+          single-line
+          @input="titleChange"
+          hide-details
       />
     </div>
 
     <div class="item-option">
       <p class="item-option-label">格式</p>
-      <el-radio-group :value="value.format" @change="formatChange">
-        <el-radio label="normal">省市区</el-radio>
-        <el-radio label="detail">省市区-街道</el-radio>
-      </el-radio-group>
+      <v-radio-group hide-details :value="value.format" row @change="formatChange" class="ma-0">
+        <v-radio label="省市区" value="normal"></v-radio>
+        <v-radio label="省市区-街道" value="detail"></v-radio>
+      </v-radio-group>
     </div>
-
 
     <div class="item-option">
       <p class="item-option-label">必填</p>
-      <el-switch :value="value.request" @change="requestChange">
-      </el-switch>
+      <v-switch :value="value.request" @change="requestChange" class="ma-0">
+      </v-switch>
     </div>
   </div>
 </template>
 
 <script>
-
   export default {
     name: 'AddressOption',
     props: {
@@ -37,12 +38,10 @@
         default: () => Object.assign({}),
       },
     },
-
     methods: {
       formatChange(format) {
-        this.update({ format: format === 'normal' ? 'detail' : 'normal' });
+        this.update({ format });
       },
-
       requestChange(request) {
         this.update({ request });
       },

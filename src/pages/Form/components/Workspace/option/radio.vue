@@ -2,11 +2,14 @@
   <div>
     <div class="item-option">
       <p class="item-option-label">题目</p>
-      <el-input
-        size="small"
-        clearable
-        :value="value.title"
-        @input="titleChange"
+      <v-text-field
+          clearable
+          :value="value.title"
+          label="请输入"
+          outlined
+          single-line
+          @input="titleChange"
+          hide-details
       />
     </div>
 
@@ -21,40 +24,44 @@
       >
         <transition-group type="transition" :name="!drag ? 'flip-list' : null">
           <div class="item-option-input" v-for="(item,index) in value.options" :key="item.id">
-            <i class="fa fa-navicon sort-icon"></i>
-            <el-input
-              size="small"
-              clearable
-              :value="item.value"
-              @input="optionInputChange($event,index)"
-              :disabled="item.value==='其它'"
+           <v-icon class="sort-icon">mdi-widgets</v-icon>
+            <v-text-field
+                dense
+                class="ma-0"
+                clearable
+                :value="item.value"
+                label="请输入"
+                outlined
+                single-line
+                hide-details
+                @input="optionInputChange($event,index)"
+                :disabled="item.value==='其它'"
             />
-            <i class="el-icon-delete delete-icon" @click="deleteOption(index)"></i>
+            <v-icon class="delete-icon ml-2" @click="deleteOption(index)">mdi-delete</v-icon>
           </div>
         </transition-group>
       </draggable>
 
       <div>
-        <el-button type="text" @click.stop.prevent="addOption">
+        <v-btn text @click.stop.prevent="addOption" color="primary">
           添加选项
-        </el-button>
-        <el-button type="text" @click.stop.prevent="addOption('其它')" :disabled="hasOther">
+        </v-btn>
+        <v-btn text color="primary" @click.stop.prevent="addOption('其它')" :disabled="hasOther">
           添加其它项
-        </el-button>
+        </v-btn>
       </div>
-
     </div>
 
     <div class="item-option">
       <p class="item-option-label">必填</p>
-      <el-switch :value="value.request" @change="requestChange">
-      </el-switch>
+      <v-switch class="ma-0" :value="value.request" @change="requestChange">
+      </v-switch>
     </div>
   </div>
 </template>
 
 <script>
-  import uuidV4 from 'uuid/v4';
+  import { v4 as uuidV4 } from 'uuid';
   import { findIndex } from 'lodash';
   import draggable from 'vuedraggable';
 

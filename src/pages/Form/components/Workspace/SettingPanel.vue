@@ -1,6 +1,7 @@
 <template>
   <div class="setting-panel-inner-box">
     <p class="setting-panel-title">{{value.label}}</p>
+    <v-divider />
     <div class="main">
 
       <div v-for="(_, uuid) in $attrs.schema" :key="uuid">
@@ -34,7 +35,7 @@
         />
 
         <AddressOption
-          v-if=" value.componentType===type.ADDRESS&&uuid=== $attrs.editUuid"
+          v-if="value.componentType===type.ADDRESS&&uuid=== $attrs.editUuid"
           :value="value"
           @change="update"
         />
@@ -61,7 +62,7 @@
   import RadioOption from './option/radio';
   import AnswerOption from './option/answer';
   import NumberOption from './option/number';
-  import AddressOption from './option/address';
+  import AddressOption from './option/AddressOption';
   import HelpTextOption from './option/helpText';
   import DateOption from './option/date';
 

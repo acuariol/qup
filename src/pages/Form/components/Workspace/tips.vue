@@ -1,8 +1,8 @@
 <template>
   <div>
-    <div v-if="type==='center'" class="center">
+    <v-card outlined v-if="type==='center'" class="center">
       <i class="el-icon-top-left icon"></i><span>1</span>点击添加问题
-    </div>
+    </v-card>
     <div v-if="type==='right'" class="right">
       <span>2</span>添加问题项后在这里编辑
     </div>
@@ -23,7 +23,7 @@
     padding: 24px 76px;
     font-size: 1rem;
     font-weight: 500;
-    border: 1px solid #eeeeee;
+
     border-radius: 5px;
     margin-top: 50px;
     position: relative;
@@ -34,7 +34,7 @@
   }
 
   .icon {
-    color: #1f94f4;
+    color: var(--v-primary-base);
     font-weight: 700;
     font-size: 1.8rem;
     position: absolute;
@@ -43,7 +43,7 @@
   }
 
   span {
-    color: #1f94f4;
+    color: var(--v-primary-base);
     font-weight: 700;
     padding-right: 6px;
     font-size: 1.2rem;

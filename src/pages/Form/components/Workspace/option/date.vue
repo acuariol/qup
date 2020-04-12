@@ -2,32 +2,35 @@
   <div>
     <div class="item-option">
       <p class="item-option-label">题目</p>
-      <el-input
-        size="small"
-        clearable
-        :value="value.title"
-        @input="titleChange"
+      <v-text-field
+          clearable
+          :value="value.title"
+          label="请输入"
+          outlined
+          single-line
+          @input="titleChange"
+          hide-details
       />
+
     </div>
 
     <div class="item-option">
       <p class="item-option-label">日期格式</p>
-      <el-select :value="value.dateType" @change="dateTypeChange" size="small">
-        <el-option
-          label="年-月-日"
-          value="date"
-        />
-        <el-option
-          label="年-月-日 时:分:秒"
-          value="datetime"
-        />
-      </el-select>
+
+      <v-select
+          :items="items"
+          label="Outlined style"
+          outlined
+          single-line
+          hide-details
+          :value="value.dateType" @change="dateTypeChange"
+     />
+
     </div>
 
     <div class="item-option">
       <p class="item-option-label">必填</p>
-      <el-switch :value="value.request" @change="requestChange">
-      </el-switch>
+      <v-switch class="ma-0" hide-details :value="value.request" @change="requestChange"/>
     </div>
   </div>
 </template>
@@ -41,6 +44,21 @@
         type: Object,
         default: () => Object.assign({}),
       },
+    },
+    data(){
+      return{
+        items:[
+          {
+            text:'年-月-日',
+            value:'date'
+          },
+          {
+            text:'年-月-日 时:分:秒',
+            value:'datetime'
+          },
+
+        ]
+      }
     },
 
     methods: {

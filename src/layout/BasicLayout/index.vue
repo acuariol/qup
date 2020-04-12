@@ -3,9 +3,9 @@
     <v-app-bar
         :clipped-left="$vuetify.breakpoint.lgAndUp"
         app
-        color="indigo darken-2"
-        dark
+        color="intense"
         prominent
+        dark
         shrink-on-scroll
     >
       <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
@@ -30,7 +30,7 @@
             label="搜索"
             solo-inverted
             v-if="showSearch"
-        ></v-text-field>
+        />
       </v-slide-x-reverse-transition>
 
 
@@ -38,8 +38,15 @@
         <v-icon>mdi-magnify</v-icon>
       </v-btn>
 
-      <NoticeIconMenu></NoticeIconMenu>
+      <v-btn icon @click="toggleTheme">
+        <v-icon>mdi-invert-colors</v-icon>
+      </v-btn>
 
+      <v-btn icon @click="goTo" v-show="!isHomePage">
+        <v-icon>mdi-home</v-icon>
+      </v-btn>
+
+      <NoticeIconMenu></NoticeIconMenu>
       <AccountIconMenu></AccountIconMenu>
 
     </v-app-bar>
@@ -54,7 +61,6 @@
         <v-subheader>主菜单</v-subheader>
 
         <v-list-item-group v-model="menuIndex" color="primary">
-
           <div v-for="item in menu" :key="item.text">
             <v-list-group
                 v-if="item.children"
@@ -94,7 +100,6 @@
             </v-list-item>
           </div>
 
-
         </v-list-item-group>
 
       </v-list>
@@ -115,13 +120,11 @@
           </v-list-item-avatar>
           <v-list-item-title v-text="item.text" />
         </v-list-item>
-
       </v-list>
 
     </v-navigation-drawer>
-
     <v-content>
-      <v-container fluid style="background: #f3f3f3;height: 100%">
+      <v-container fluid>
         <notifications
             :duration="7000"
             class="my-vue-notification"
@@ -130,7 +133,6 @@
         <router-view></router-view>
       </v-container>
     </v-content>
-
   </div>
 </template>
 
@@ -141,15 +143,14 @@
 
   export default {
     name: 'BasicLayout',
-    components: { AccountIconMenu ,NoticeIconMenu},
+    components: { AccountIconMenu, NoticeIconMenu },
     data() {
       return {
         drawer: null,
         miniVariant: false,
         showSearch: false,
         menuIndex: -1,
-        item1: 1,
-        item2: 2,
+        isHomePage: false,
         menu: [
           { icon: 'mdi-trending-up', text: '问卷管理', path: '/form' },
           { icon: 'mdi-youtube-subscription', text: '数据管理', path: '/monitor' },
@@ -178,7 +179,8 @@
     },
     watch: {
       $route({ path }) {
-        this.handleMenuIndex(path)
+        this.isHomePage = path === '/';
+        this.handleMenuIndex(path);
       },
     },
     methods: {
@@ -192,9 +194,16 @@
         if (typeof index === 'number')
           this.menuIndex = index;
       },
+      toggleTheme() {
+        this.$vuetify.theme.dark = !this.$vuetify.theme.isDark;
+      },
+      goTo() {
+        this.$router.replace('/');
+      },
     },
     mounted() {
       this.handleMenuIndex(this.$router.currentRoute.path);
+      this.isHomePage = this.$router.currentRoute.path === '/';
     },
   };
 </script>

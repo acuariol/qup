@@ -2,78 +2,78 @@
   <div>
     <tips type="center" v-if="list.length===0"></tips>
     <draggable
-      :list="list"
-      @change="change"
-      @end="dragEnd"
-      @start="drag=true"
-      group="block"
-      v-bind:="dragOptions"
-      style="min-height: 300px"
+        :list="list"
+        @change="change"
+        @end="dragEnd"
+        @start="drag=true"
+        group="block"
+        v-bind:="dragOptions"
+        style="min-height: 300px"
     >
-
       <transition-group type="transition" :name="!drag ? 'flip-list' : null">
-        <div
-          v-for="(value, uuid, index) in schema"
-          :key="uuid"
-          class="block"
-          :class="uuid===editUuid?'isSelect':'normal'"
-          @click="handleEditBlock(value)"
+        <v-card
+            flat
+            v-for="(value, uuid, index) in schema"
+            :key="uuid"
+            class="block"
+            :class="uuid===editUuid?'isSelect':'normal'"
+            @click.native="handleEditBlock(value)"
         >
           <BlockTitle
-            v-if="value.componentType !== type.HELP_TEXT"
-            :data="value"
-            :index="index+1"
-            :schema="schema"
-            :uuid="uuid"
+              v-if="value.componentType !== type.HELP_TEXT"
+              :data="value"
+              :index="index+1"
+              :schema="schema"
+              :uuid="uuid"
           />
           <BlockOption
-            v-if="uuid===editUuid"
-            @deleteBlock="handleDeleteBlock(uuid,index+1)"
-            @copyBlock="handleCopyBlock(uuid,index+1)"
+              v-if="uuid===editUuid"
+              @deleteBlock="handleDeleteBlock(uuid,index+1)"
+              @copyBlock="handleCopyBlock(uuid,index+1)"
           />
 
           <radio
-            v-if="value.componentType === type.RADIO"
-            :data="value"
+              v-if="value.componentType === type.RADIO"
+              :data="value"
 
           />
           <multipleRadio
-            v-if="value.componentType === type.MULTIPLE_RADIO"
-            :data="value"
+              v-if="value.componentType === type.MULTIPLE_RADIO"
+              :data="value"
 
           />
 
           <answer
-            v-if="value.componentType === type.ANSWER"
-            :data="value"
+              v-if="value.componentType === type.ANSWER"
+              :data="value"
 
           />
 
           <rate
-            v-if="value.componentType === type.RATE"
-            :data="value"
+              v-if="value.componentType === type.RATE"
+              :data="value"
           />
 
           <number
-            v-if="value.componentType === type.NUMBER"
-            :data="value"
+              v-if="value.componentType === type.NUMBER"
+              :data="value"
           />
 
           <AddressBlock
-            v-if="value.componentType === type.ADDRESS"
-            :data="value"
+              v-if="value.componentType === type.ADDRESS"
+              :data="value"
           />
 
           <helpText
-            v-if="value.componentType === type.HELP_TEXT"
-            :data="value"
+              v-if="value.componentType === type.HELP_TEXT"
+              :data="value"
           />
 
           <date
-            v-if="value.componentType === type.DATE"
-            :data="value"
+              v-if="value.componentType === type.DATE"
+              :data="value"
           />
-        </div>
+        </v-card>
       </transition-group>
     </draggable>
 
@@ -81,13 +81,13 @@
 </template>
 
 <script>
-  import draggable from 'vuedraggable'
+  import draggable from 'vuedraggable';
   import radio from './block/radio';
   import answer from './block/answer';
   import rate from './block/rate';
   import multipleRadio from './block/multipleRadio';
   import number from './block/number';
-  import AddressBlock from './block/address';
+  import AddressBlock from './block/addressBlock';
   import helpText from './block/helpText';
   import date from './block/date';
   import tips from './tips';
@@ -116,7 +116,7 @@
       number,
       AddressBlock,
       date,
-      draggable
+      draggable,
     },
     props: {
       schema: {

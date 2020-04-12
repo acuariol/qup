@@ -2,32 +2,35 @@
   <div>
     <div class="item-option">
       <p class="item-option-label">题目</p>
-      <el-input
-        size="small"
-        clearable
-        :value="value.title"
-        @input="titleChange"
+      <v-text-field
+          clearable
+          :value="value.title"
+          label="请输入"
+          outlined
+          single-line
+          @input="titleChange"
+          hide-details
       />
     </div>
 
     <div class="item-option">
       <p class="item-option-label">评分制</p>
-      <el-radio-group :value="value.scoring" @change="rateScoringChange">
-        <el-radio :label="5">五分制</el-radio>
-        <el-radio :label="10">十分制</el-radio>
-      </el-radio-group>
+
+      <v-radio-group hide-details :value="value.scoring" row @change="rateScoringChange" class="ma-0">
+        <v-radio label="五分制" :value="5"></v-radio>
+        <v-radio label="十分制" :value="10"></v-radio>
+      </v-radio-group>
+
     </div>
 
     <div class="item-option">
       <p class="item-option-label">允许半选</p>
-      <el-switch :value="value.allowHalf" @change="allowHalfChange">
-      </el-switch>
+      <v-switch class="ma-0" hide-details :value="value.allowHalf" @change="allowHalfChange"/>
     </div>
 
     <div class="item-option">
       <p class="item-option-label">必填</p>
-      <el-switch :value="value.request" @change="requestChange">
-      </el-switch>
+      <v-switch class="ma-0" hide-details :value="value.request" @change="requestChange"/>
     </div>
   </div>
 </template>
@@ -45,7 +48,7 @@
 
     methods: {
       rateScoringChange(scoring) {
-        this.update({ scoring: scoring === 5 ? 10 : 5 });
+        this.update({ scoring });
       },
       allowHalfChange(allowHalf) {
         this.update({ allowHalf });

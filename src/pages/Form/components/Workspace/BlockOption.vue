@@ -1,8 +1,8 @@
 <template>
-  <div class="block-option">
+  <v-card class="block-option">
     <i class="el-icon-copy-document" @click.stop.prevent="$emit('copyBlock')"></i>
     <i class="el-icon-delete" @click.stop.prevent="$emit('deleteBlock')"></i>
-  </div>
+  </v-card>
 </template>
 
 <script>

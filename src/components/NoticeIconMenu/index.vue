@@ -62,17 +62,16 @@
         persistent
     >
 
-      <v-card dark>
-        <v-card-title :class="`title ${item.color}`">
+      <v-card>
+        <v-card-title :class="`title ${item.color} white--text`">
           {{item.title}}
         </v-card-title>
 
-        <v-card-text  class="white text--primary">
+        <v-card-text>
           <p class="subtitle-1 font-weight-medium pt-3">{{item.text}}</p>
         </v-card-text>
 
-
-        <v-card-actions class="white">
+        <v-card-actions>
           <v-spacer></v-spacer>
           <v-btn
               :color="item.color"
@@ -125,14 +124,14 @@
         this.dialog = true;
         this.visible = false;
       },
-      close(){
+      close() {
         this.dialog = false;
-        this.clearNotice(this.item)
+        this.clearNotice(this.item);
       },
-      clear(){
+      clear() {
         this.visible = false;
-        this.clearNotice()
-      }
+        this.clearNotice();
+      },
     },
     mounted() {
       this.fetchNotice();

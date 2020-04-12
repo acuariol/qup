@@ -1,143 +1,173 @@
 <template>
+
   <div class="preview-container">
+
     <el-row
-      type="flex"
-      justify="center"
-      v-if="render"
+        type="flex"
+        justify="center"
+
     >
-      <el-col :xs="24" :sm="24" :md="12" :lg="12" :xl="10" class="col-bg">
-        <div class="cover" v-bind:style="{backgroundImage:`url(${require('@/assets/form-cover.png')})`}"></div>
+      <el-col :xs="24" :sm="24" :md="12" :lg="12" :xl="10">
 
-        <div class="preview-main">
-          <h3 class="title">{{previewData.name}}</h3>
-          <p class="subtitle">{{previewData.description}}</p>
+        <template v-if="render">
+          <v-card tile flat class="ma-0 pa-0">
+            <div class="cover" v-bind:style="{backgroundImage:`url(${require('@/assets/form-cover.png')})`}"></div>
 
-          <div v-for="(value, uuid, index) in previewData.schema" :key="uuid" class="item">
-            <BlockTitle
-              v-if="value.componentType !== type.HELP_TEXT"
-              :data="value"
-              :index="index+1"
-              :schema="previewData.schema"
-              :uuid="uuid"
-            />
+            <div class="preview-main">
+              <h3 class="title">{{previewData.name}}</h3>
+              <p class="subtitle-1 pb-6">{{previewData.description}}</p>
 
-            <el-form ref="previewForm" :model="previewData.schema" label-width="80px">
-              <template v-if="value.componentType===type.RADIO">
-                <el-radio-group v-model="previewData.schema[uuid].userInput">
-                  <el-radio class="bl option-item" v-for="item in value.options" :key="item.id" :label="item.value">
-                    {{item.value}}
-                  </el-radio>
-                </el-radio-group>
-              </template>
-
-              <template v-if="value.componentType===type.MULTIPLE_RADIO">
-                <el-checkbox-group v-model="previewData.schema[uuid].userInput">
-                  <el-checkbox
-                    class="bl option-item"
-                    v-for="item in value.options"
-                    :key="item.id"
-                    :label="item.value"
-                  />
-                </el-checkbox-group>
-              </template>
-
-              <template v-if="value.componentType===type.ANSWER">
-                <el-input
-                  size="small"
-                  v-model="previewData.schema[uuid].userInput"
-                  type="textarea"
-                  :autosize="{ minRows: 3, maxRows: 6}"
+              <div v-for="(value, uuid, index) in previewData.schema" :key="uuid" class="item">
+                <BlockTitle
+                    v-if="value.componentType !== type.HELP_TEXT"
+                    :data="value"
+                    :index="index+1"
+                    :schema="previewData.schema"
+                    :uuid="uuid"
                 />
-              </template>
 
-              <template v-if="value.componentType===type.HELP_TEXT">
-                <div class="help-text" :class="{'link':value.link}">
-                <span>
-                  {{value.content}}
-                </span>
-                </div>
-              </template>
+                <el-form ref="previewForm" :model="previewData.schema" label-width="80px">
+                  <template v-if="value.componentType===type.RADIO">
 
-              <template v-if="value.componentType===type.RATE">
-                <el-rate
-                  v-model="previewData.schema[uuid].userInput"
-                  :max="value.scoring"
-                  :allow-half="value.allowHalf"
-                />
-              </template>
-
-              <template v-if="value.componentType===type.NUMBER">
-                <el-input
-                  size="small"
-                  v-model="previewData.schema[uuid].userInput"
-                  :placeholder="previewData.schema[uuid].placeholder"
-                />
-              </template>
-
-              <template v-if="value.componentType===type.DATE">
-                <el-date-picker
-                  size="small"
-                  v-model="previewData.schema[uuid].userInput"
-                  :type="value.dateType"
-                  :value-format="value.format"
-                  :placeholder="value.placeholder"
-                />
-              </template>
-
-              <template v-if="value.componentType===type.ADDRESS">
-                <el-row type="flex" justify="start" :gutter="16">
-                  <el-col :xs="24" :sm="16" :md="24" :lg="20" :xl="20">
-                    <div style="display: flex">
-                      <el-cascader
-                        style="flex-grow: 1"
-                        size="small"
-                        v-model="previewData.schema[uuid].userInput.primary"
-                        :options="options"
-                      />
-                      <el-select
-                        v-if="value.format==='detail'"
-                        style="width: 240px;margin-left:16px"
-                        size="small"
-                        v-model="previewData.schema[uuid].userInput.street"
-                        placeholder="请选择"
-                      >
-                        <el-option
-                          v-for="item in areaOptions"
-                          :key="item.value"
-                          :label="item.label"
+                    <v-radio-group v-model="previewData.schema[uuid].userInput">
+                      <v-radio
+                          v-for="item in value.options" :key="item.id"
+                          :label="item.value"
                           :value="item.value"
-                        >
-                        </el-option>
-                      </el-select>
-                    </div>
-                  </el-col>
-                </el-row>
+                      />
+                    </v-radio-group>
 
-                <el-row type="flex" justify="start" :gutter="16" v-if="value.format==='detail'">
-                  <el-col :xs="24" :sm="16" :md="24" :lg="20" :xl="20">
-                    <el-input
-                      style="margin-right:16px"
-                      size="small"
-                      v-model="previewData.schema[uuid].userInput.detail"
-                      placeholder="请填写详细地址"
+                  </template>
+
+                  <template v-if="value.componentType===type.MULTIPLE_RADIO">
+
+                    <v-checkbox
+                        v-for="item in value.options"
+                        :key="item.id"
+                        v-model="previewData.schema[uuid].userInput"
+                        :label="item.value"
+                        :value="item.value"
+                        hide-details
                     />
-                  </el-col>
-                </el-row>
-              </template>
-            </el-form>
-          </div>
-        </div>
+                  </template>
+
+                  <template v-if="value.componentType===type.ANSWER">
+
+                    <v-textarea
+                        clearable
+                        v-model="previewData.schema[uuid].userInput"
+                        label="请输入"
+                        outlined
+                        single-line
+                        hide-details
+                    />
+
+                  </template>
+
+                  <template v-if="value.componentType===type.HELP_TEXT">
+                    <div class="help-text" :class="{'link':value.link}">
+                      <span>
+                        {{value.content}}
+                      </span>
+                    </div>
+                  </template>
+
+                  <template v-if="value.componentType===type.RATE">
+
+                    <v-rating
+                        v-model="previewData.schema[uuid].userInput"
+                        color="yellow darken-3"
+                        background-color="grey darken-1"
+                        empty-icon="$ratingFull"
+                        :half-increments="value.allowHalf"
+                        hover
+                    ></v-rating>
+
+                  </template>
+
+                  <template v-if="value.componentType===type.NUMBER">
+
+                    <v-text-field
+                        clearable
+                        :label="previewData.schema[uuid].placeholder"
+                        outlined
+                        single-line
+                        v-model="previewData.schema[uuid].userInput"
+                        hide-details
+                    />
+
+                  </template>
+
+                  <template v-if="value.componentType===type.DATE">
+                    <el-date-picker
+                        size="small"
+                        v-model="previewData.schema[uuid].userInput"
+                        :type="value.dateType"
+                        :value-format="value.format"
+                        :placeholder="value.placeholder"
+                    />
+                  </template>
+
+                  <template v-if="value.componentType===type.ADDRESS">
+                    <el-row type="flex" justify="start" :gutter="16">
+                      <el-col :xs="24" :sm="16" :md="24" :lg="20" :xl="20">
+                        <div style="display: flex">
+                          <el-cascader
+                              style="flex-grow: 1"
+                              size="small"
+                              v-model="previewData.schema[uuid].userInput.primary"
+                              :options="options"
+                          />
+                          <el-select
+                              v-if="value.format==='detail'"
+                              style="width: 240px;margin-left:16px"
+                              size="small"
+                              v-model="previewData.schema[uuid].userInput.street"
+                              placeholder="请选择"
+                          >
+                            <el-option
+                                v-for="item in areaOptions"
+                                :key="item.value"
+                                :label="item.label"
+                                :value="item.value"
+                            >
+                            </el-option>
+                          </el-select>
+                        </div>
+                      </el-col>
+                    </el-row>
+
+                    <el-row type="flex" justify="start" :gutter="16" v-if="value.format==='detail'">
+                      <el-col :xs="24" :sm="16" :md="24" :lg="20" :xl="20">
+                        <el-input
+                            style="margin-right:16px"
+                            size="small"
+                            v-model="previewData.schema[uuid].userInput.detail"
+                            placeholder="请填写详细地址"
+                        />
+                      </el-col>
+                    </el-row>
+                  </template>
+                </el-form>
+              </div>
+            </div>
+          </v-card>
+        </template>
+
+        <template v-else>
+          <v-card class="pa-6 ma-4">
+            <v-card-text class="title text-center">
+              无数据
+            </v-card-text>
+          </v-card>
+        </template>
       </el-col>
 
     </el-row>
 
 
-    <template v-else>
-      <div class="no-data">
-        无数据</div>
-    </template>
-
   </div>
+
 </template>
 
 <script>

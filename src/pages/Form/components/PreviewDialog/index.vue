@@ -6,22 +6,21 @@
       persistent
       transition="dialog-bottom-transition"
   >
-    <v-card height="100%">
+    <v-container fluid class="ma-0 pa-0" style="height: 100%">
+
       <div style="display: flex;flex-direction: column;height: 100%">
         <v-toolbar dark color="secondary">
           <v-btn icon dark @click.stop="cancelPreview">
             <v-icon>mdi-close</v-icon>
           </v-btn>
           <v-toolbar-title>当前为预览界面，回答不计入结果</v-toolbar-title>
-
           <v-spacer></v-spacer>
-
         </v-toolbar>
-
         <Preview />
       </div>
 
-    </v-card>
+
+    </v-container>
 
 
   </v-dialog>
