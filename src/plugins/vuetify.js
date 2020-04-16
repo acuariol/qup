@@ -13,14 +13,16 @@ export default new Vuetify({
         secondary: '#424242',
         accent: '#80CBC4',
         intense:'#00796B',
-        container:'#F5F5F5'
+        container:'#F5F5F5',
+        blockIntense:'#f5f5f5'
       },
       dark:{
         primary: '#00796B',
         secondary: '#424242',
         accent: '#80CBC4',
         intense:'#272727',
-        container:'#121212'
+        container:'#121212',
+        blockIntense:'#353535'
       }
     },
   },

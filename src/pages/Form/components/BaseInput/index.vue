@@ -68,6 +68,7 @@
 
           <div style="display: flex;justify-content: flex-end">
             <v-btn
+                :loading="loading"
                 :disabled="!valid"
                 color="primary"
                 elevation="0"
@@ -97,7 +98,7 @@
       startTimeMenu: false,
       endTimeMenu: false,
       valid: true,
-
+      loading:false,
       startTime: '',
       endTime: '',
       startTimeRules: [
@@ -111,11 +112,12 @@
     methods: {
       ...mapMutations(['setState']),
       validate() {
+        this.loading = true
         delay(() => {
+          this.loading = false
           if (this.$refs.form.validate()) {
             this.setState({ step: 'editForm' });
           }
-
         }, 500);
 
       },

@@ -10,7 +10,7 @@
       <transition-group type="transition" :name="!drag ? 'flip-list' : null">
 
         <v-list-item
-            v-for="item  in list"
+            v-for="item in list"
             :key="item.componentType"
             @click.stop="click(item)"
         >
@@ -34,42 +34,42 @@
 
   const list = [
     {
-      icon: 'mdi-checkbox-multiple-blank-circle-outline',
+      icon: 'mdi-radiobox-marked',
       componentType: type.RADIO,
       label: '单选题',
     },
     {
-      icon: 'mdi-trending-up',
+      icon: 'mdi-checkbox-marked-outline',
       componentType: type.MULTIPLE_RADIO,
       label: '多选题',
     },
     {
-      icon: 'mdi-trending-up',
+      icon: 'mdi-card-text-outline',
       componentType: type.ANSWER,
       label: '问答题',
     },
     {
-      icon: 'mdi-trending-up',
+      icon: 'mdi-star-outline',
       componentType: type.RATE,
       label: '评分',
     },
     {
-      icon: 'mdi-trending-up',
+      icon: 'mdi-numeric',
       componentType: type.NUMBER,
       label: '数字',
     },
+    // {
+    //   icon: 'mdi-trending-up',
+    //   componentType: type.ADDRESS,
+    //   label: '省市区',
+    // },
     {
-      icon: 'mdi-trending-up',
-      componentType: type.ADDRESS,
-      label: '省市区',
-    },
-    {
-      icon: 'mdi-trending-up',
+      icon: 'mdi-help-circle-outline',
       componentType: type.HELP_TEXT,
       label: '说明文字',
     },
     {
-      icon: 'mdi-trending-up',
+      icon: 'mdi-clock-outline',
       componentType: type.DATE,
       label: '日期',
     },

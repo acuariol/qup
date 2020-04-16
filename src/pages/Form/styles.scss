@@ -130,15 +130,14 @@ span {
   .normal {
 
     &:hover {
-      border-left: 2px dashed rgba(45, 140, 240, 0.71);
+      border-left: 2px dashed var(--v-primary-base);
     }
   }
 
   .isSelect {
-
-    //background: #fbfbfb;
-    border-left: 2px solid #2d8cf0;
-    //box-shadow: 0 2px 1px -1px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 1px 3px 0px rgba(0, 0, 0, 0.12)
+    background: var(--v-blockIntense-base);
+    border-left: 2px solid var(--v-primary-base);
+    box-shadow: 0 2px 1px -1px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 1px 3px 0px rgba(0, 0, 0, 0.12)
   }
 
   .input {

@@ -152,6 +152,7 @@
               options: this.creatOptions(),
               request: false,
               userInput: null, // 表单渲染后填写使用
+              visible:true
             };
           case type.MULTIPLE_RADIO:
             return {
@@ -162,6 +163,7 @@
               options: this.creatOptions(),
               request: false,
               userInput: [],
+              visible:true
             };
           case type.ANSWER:
             return {
@@ -172,6 +174,7 @@
               request: false,
               placeholder: '请输入',
               userInput: '',
+              visible:true
             };
           case type.RATE:
             return {
@@ -183,6 +186,7 @@
               scoring: 5, // 评分制 5分或10分制
               allowHalf: false, // 是否允许半选
               userInput: null,
+              visible:true
             };
           case type.NUMBER:
             return {
@@ -194,6 +198,7 @@
               placeholder: '请输入',
               unit: '', // 单位
               userInput: null,
+              visible:true
             };
           case type.ADDRESS:
             return {
@@ -204,6 +209,7 @@
               request: false,
               format: 'normal', // 格式： normal 省市区， detail 省市区-街道
               userInput: { primary: [], street: null, detail: '' }, // 分别对应 省市区，街道，详细地址
+              visible:true
             };
           case type.HELP_TEXT:
             return {
@@ -212,6 +218,7 @@
               label,
               content: '说明文字',
               link: '',
+              visible:true
             };
           case type.DATE:
             return {
@@ -223,6 +230,7 @@
               format: 'YYYY-MM-DD',
               placeholder: '选择日期',
               userInput: null,
+              visible:true
             };
           default :
             return {};
@@ -233,14 +241,17 @@
           {
             id: uuidV4(),
             value: '选项1',
+            relevance:[]
           },
           {
             id: uuidV4(),
             value: '选项2',
+            relevance:[]
           },
           {
             id: uuidV4(),
             value: '选项3',
+            relevance:[]
           },
         ];
       },

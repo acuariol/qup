@@ -30,16 +30,14 @@ const form = {
       description: '',
     },
 
-
     editData: null,  // 新建、编辑所保存的数据
-
     schema: {},
 
+    selectableSchema: [],
   },
   getters: {
     listLength: state => state.list.length,
   },
-
   actions: {
     async fetchList({ commit }) {
       commit('setState', { loading: true });
@@ -87,11 +85,17 @@ const form = {
     remove(state, { id }) {
       state.list = state.list.filter(item => item.id !== id);
     },
+    filterSelectableSchema(state, { uuid }) {
+      const schemaArr = Object.keys(state.schema).map(uuid => ({ ...state.schema[uuid] }))
+        .filter(o => o.componentType !== 'helpText');
+      const index = findIndex(schemaArr, o => o.uuid === uuid);
+      state.selectableSchema = schemaArr.splice(index + 1, schemaArr.length - 1);
+
+    },
     removeMultiple(state) {
       state.list = differenceBy(state.list, state.selected, 'id');
       state.selected = [];
     },
-
     setPreviewData: (state, payload) => {
       const org = payload ? payload : state.editData;
       state.previewData.name = org.name;
@@ -100,7 +104,6 @@ const form = {
       state.previewData.schema = payload ? payload.schema : state.schema;
       state.previewVisible = true;
     },
-
     exit: (state) => {
       state.editDialogVisible = false;
       state.editData = null;

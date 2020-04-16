@@ -7,15 +7,18 @@
         "options": [
             {
                 "id": "59ad431c-0b12-47a3-a24f-2dacf83c8778",
-                "value": "选项1"
+                "value": "选项1",
+                "relevance": []
             },
             {
                 "id": "d6d51139-a13e-4286-89b2-b4e4bbe0e4d2",
-                "value": "选项2"
+                "value": "选项2",
+                "relevance": []
             },
             {
                 "id": "1ae5e554-1740-4707-a06f-9e1df7c166dc",
-                "value": "选项3"
+                "value": "选项3",
+                "relevance": []
             }
         ],
         "request": false,
@@ -71,19 +74,6 @@
         "placeholder": "请输入",
         "unit": "",
         "userInput": null
-    },
-    "10a35b02-0994-437b-83e8-e89cb5dc625a": {
-        "uuid": "10a35b02-0994-437b-83e8-e89cb5dc625a",
-        "componentType": "address",
-        "label": "省市区",
-        "title": "省市区",
-        "request": false,
-        "format": "normal",
-        "userInput": {
-            "primary": [],
-            "street": null,
-            "detail": ""
-        }
     },
     "f71d930a-6f4f-46e0-bd67-ab4d72eb4ce8": {
         "uuid": "f71d930a-6f4f-46e0-bd67-ab4d72eb4ce8",

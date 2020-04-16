@@ -105,7 +105,7 @@
       </v-list>
 
       <v-list shaped>
-        <v-subheader class="mt-4 grey--text text--darken-1">SUBSCRIPTIONS</v-subheader>
+        <v-subheader class="mt-4 grey--text text--darken-1">联系人</v-subheader>
 
         <v-list-item
             v-for="item in items2"
@@ -124,7 +124,7 @@
 
     </v-navigation-drawer>
     <v-content>
-      <v-container fluid>
+      <v-container fluid style="min-height: 100vh">
         <notifications
             :duration="7000"
             class="my-vue-notification"
