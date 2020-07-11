@@ -2,6 +2,7 @@
   <v-dialog
       v-model="dialog"
       width="800"
+      persistent
   >
     <template v-slot:activator="{ on }">
       <v-btn v-on="on" text color="primary" v-if="value.componentType===type.RADIO" @click.stop.prevent="click">
@@ -42,12 +43,19 @@
         </template>
       </v-card-text>
 
-      <v-card-actions>
+      <v-card-actions class="px-6">
         <v-spacer></v-spacer>
         <v-btn
-            color="primary"
             text
+            @click="handleCancel"
+        >
+          取消
+        </v-btn>
+
+        <v-btn
+            color="primary"
             @click="handleOk"
+            text
         >
           确定
         </v-btn>
@@ -93,8 +101,11 @@
       click() {
         this.filterSelectableSchema({ uuid: this.value.uuid });
       },
+      handleCancel(){
+        this.dialog = false
+        this.$emit('change', this.value.options)
+      },
       handleOk(){
-
         this.dialog = false
         this.$emit('change', this.itemValue.options)
       }

@@ -49,7 +49,7 @@
         <v-btn text color="primary" @click.stop.prevent="addOption('其它')" :disabled="hasOther">
           添加其它项
         </v-btn>
-        <RelevanceBtn :value="value" @change="relevanceBtnChange"/>
+<!--        <RelevanceBtn :value="value" @change="relevanceBtnChange"/>-->
 
       </div>
     </div>

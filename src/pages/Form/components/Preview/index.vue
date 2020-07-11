@@ -99,13 +99,28 @@
                   </template>
 
                   <template v-if="value.componentType===type.DATE">
-                    <el-date-picker
-                        size="small"
-                        v-model="previewData.schema[uuid].userInput"
-                        :type="value.dateType"
-                        :value-format="value.format"
-                        :placeholder="value.placeholder"
-                    />
+                    <v-menu
+                        :close-on-content-click="false"
+                        transition="scale-transition"
+                        offset-y
+                        min-width="290px"
+                    >
+                      <template v-slot:activator="{ on }">
+                        <v-text-field
+                            style="max-width: 500px"
+                            outlined
+                            single-line
+                            hide-details
+                            label="选择日期"
+                            dense
+                            v-model="previewData.schema[uuid].userInput"
+                            v-on="on"
+                        />
+                      </template>
+                      <v-date-picker  v-model="previewData.schema[uuid].userInput" no-title scrollable locale="zh-cn">
+                      </v-date-picker>
+                    </v-menu>
+
                   </template>
 
                   <template v-if="value.componentType===type.ADDRESS">

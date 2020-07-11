@@ -154,15 +154,15 @@
         menu: [
           { icon: 'mdi-trending-up', text: '问卷管理', path: '/form' },
           { icon: 'mdi-youtube-subscription', text: '数据管理', path: '/monitor' },
-          { icon: 'mdi-history', text: 'History' },
-          { icon: 'mdi-playlist-play', text: 'Playlists' },
+          { icon: 'mdi-history', text: '菜单一' },
+          { icon: 'mdi-playlist-play', text: '菜单二' },
           {
             icon: 'mdi-clock',
-            text: 'Watch Later',
+            text: '菜单三',
             path: '/about',
             children: [
-              { icon: 'mdi-history', text: 'History' },
-              { icon: 'mdi-playlist-play', text: 'Playlists' },
+              { icon: 'mdi-history', text: '菜单三-sub' },
+              { icon: 'mdi-playlist-play', text: '菜单三-sub' },
             ],
           },
 

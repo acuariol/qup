@@ -1,10 +1,9 @@
 <template>
   <div class="date">
 
-    <v-row justify="start">
+    <v-row justify="start" no-gutters>
 
       <v-menu
-          ref="endTime-menu"
           :close-on-content-click="false"
           transition="scale-transition"
           offset-y
@@ -12,7 +11,6 @@
       >
         <template v-slot:activator="{ on }">
           <v-text-field
-              class="mr-4"
               style="max-width: 500px"
               outlined
               single-line
@@ -42,6 +40,7 @@
         >
           <template v-slot:activator="{ on }">
             <v-text-field
+                class="mx-4"
                 outlined
                 single-line
                 hide-details
@@ -54,13 +53,10 @@
           <v-time-picker
               format="24hr"
               full-width
-          ></v-time-picker>
+          />
         </v-menu>
       </template>
-
     </v-row>
-
-
   </div>
 </template>
 

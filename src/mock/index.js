@@ -8,7 +8,7 @@ Mock.setup({
 
 Mock.mock(`/form/list`, 'get', () => {
   let list = [];
-  for (let i = 0; i < 15; i++) {
+  for (let i = 0; i < 5; i++) {
     list.push(Mock.mock({
       id:i,
       name: `问卷${i}`,
@@ -42,7 +42,7 @@ Mock.mock(`/user/info`, 'get', () => {
       phone:'02022903',
       station:'前端开发',
       position:'Questionnaire－某某某事业群－某某平台部－某某技术部－CEO',
-      tags:['很有想法的','专注设计','热爱音乐','皇家马德里']
+      tags:['很有想法的','专注设计','尝试新事物','热爱音乐','皇家马德里']
     }
   };
 });

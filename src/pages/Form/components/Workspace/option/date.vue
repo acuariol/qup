@@ -14,19 +14,17 @@
 
     </div>
 
-    <div class="item-option">
-      <p class="item-option-label">日期格式</p>
-
-      <v-select
-          :items="items"
-          label="Outlined style"
-          outlined
-          single-line
-          hide-details
-          :value="value.dateType" @change="dateTypeChange"
-     />
-
-    </div>
+<!--    <div class="item-option">-->
+<!--      <p class="item-option-label">日期格式</p>-->
+<!--      <v-select-->
+<!--          :items="items"-->
+<!--          label="Outlined style"-->
+<!--          outlined-->
+<!--          single-line-->
+<!--          hide-details-->
+<!--          :value="value.dateType" @change="dateTypeChange"-->
+<!--     />-->
+<!--    </div>-->
 
     <div class="item-option">
       <p class="item-option-label">必填</p>

@@ -29,7 +29,7 @@
                   readonly
                   v-on="on"
                   required
-              ></v-text-field>
+              />
             </template>
             <v-date-picker v-model="editData.startTime" no-title scrollable locale="zh-cn">
               <v-spacer></v-spacer>

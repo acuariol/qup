@@ -10,13 +10,29 @@
     />
 
     <div class="content-panel">
-      <label>
-        <input class="input" v-model="editData.name" placeholder="点此添加问卷标题" />
-      </label>
 
-      <label>
-        <input class="input description-input" v-model="editData.description" placeholder="在此填入表单描述或其它" />
-      </label>
+     <div style="padding: 0 0 44px">
+       <v-text-field
+           clearable
+           class="input"
+           label="点此添加问卷标题"
+           outlined
+           single-line
+           v-model="editData.name"
+           hide-details
+       />
+
+       <v-text-field
+           clearable
+           class="input description-input"
+           label="点此添加问卷描述"
+           outlined
+           single-line
+           v-model="editData.description"
+           hide-details
+       />
+     </div>
+
 
       <BlockArea
         :handleDeleteBlock="handleDeleteBlock"
